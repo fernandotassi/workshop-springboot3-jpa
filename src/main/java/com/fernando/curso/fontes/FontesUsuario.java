@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fernando.curso.entities.Usuario;
 
 @RestController
-@RequestMapping(value="/users")
+@RequestMapping(value="/susers")
 public class FontesUsuario 
 {
 	 @GetMapping
