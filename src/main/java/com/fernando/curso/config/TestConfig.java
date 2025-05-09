@@ -25,8 +25,5 @@ public class TestConfig implements CommandLineRunner
 		 Usuario u2 = new Usuario(null, "Deep Purple", "deep@outlook.com",
 				                  "991348900", "27369");
 		 usuarioRepository.saveAll(Arrays.asList(u1, u2));
-	}
-    
-    
-    
+	} 
 }
