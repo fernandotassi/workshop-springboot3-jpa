@@ -1,12 +1,15 @@
 package com.fernando.udem.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,7 +25,8 @@ public class Usuario implements Serializable
      private String fone;
      private String password;
      
-     //private Pedido pedido;
+     @OneToMany(mappedBy = "cliente")
+     private List<Pedido> pedidos = new ArrayList<>();
      
      public Usuario(){}
      public Usuario(Long id, String nome, String email, String fone,String password)
@@ -34,7 +38,8 @@ public class Usuario implements Serializable
      public String getEmail(){return email;}
      public String getFone(){return fone;}
      public String getPassword(){return password;}
-	
+	 public List<Pedido> getPedidos(){return pedidos;}
+     
      @Override
 	 public int hashCode() 
      {

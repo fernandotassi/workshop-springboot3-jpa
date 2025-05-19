@@ -31,9 +31,5 @@ public class RecursoUsuario
 	 {
 		 Usuario us = serv.encontraPeloId(id);
 		 return ResponseEntity.ok().body(us);
-	 }
-	 
-	 
-	 
-	 
+	 } 
 }
