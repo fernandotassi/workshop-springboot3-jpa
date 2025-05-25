@@ -5,7 +5,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fernando.udem.entities.enums.StatusPedido;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,24 +24,34 @@ public class Pedido implements Serializable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long id;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	private Instant momento;
+	private Instant momento;	
+	private Integer status;
 	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Usuario cliente;
 	
 	public Pedido(){}
-	public Pedido(Long id, Instant momento, Usuario cliente)
-	{this.id = id; this.momento = momento; this.cliente = cliente;}  
+	public Pedido(Long id, Instant momento, Usuario cliente, StatusPedido status)
+	{this.id = id; this.momento = momento; this.cliente = cliente; setStatus(status);}
+	
+	public void setMomento(Instant momento){this.momento = momento;}	
+	public void setStatus(StatusPedido status)
+	{
+		if(status != null)
+		    this.status = status.getCode();
+	}
 	
 	public Long getId(){return id;}
 	public Instant getMomento(){return momento;}
+	public StatusPedido getStatus(){return StatusPedido.valor(status);}
 	
 	@Override
 	public int hashCode() 
 	{
 		return Objects.hash(id);
 	}
+	
 	@Override
 	public boolean equals(Object obj) 
 	{
@@ -56,6 +66,6 @@ public class Pedido implements Serializable
 	}
 	
 	public String toString()
-	{return "id: " + ", momento: " + momento;}
+	{return "id: " + ", momento: " + momento + ", status: " + status;}
      
 } 
