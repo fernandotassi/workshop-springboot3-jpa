@@ -14,16 +14,16 @@ import com.fernando.udem.repositorios.RepositorioPedido;
 public class ServicoPedido 
 {
 	 @Autowired	
-     private RepositorioPedido repos;
+     private RepositorioPedido repositorioPedido;
 	 
 	 public List<Pedido> findAll()
 	 {
-		 return repos.findAll();
+		 return repositorioPedido.findAll();
 	 }
 	 
 	 public Pedido findById(Long id)
 	 {
-		 Optional<Pedido> opt = repos.findById(id);
+		 Optional<Pedido> opt = repositorioPedido.findById(id);
 		 return opt.get();
 	 }
 }
