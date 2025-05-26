@@ -7,27 +7,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.fernando.udem.entities.Pedido;
-import com.fernando.udem.services.ServicoPedido;
+
+import com.fernando.udem.entities.Produto;
+import com.fernando.udem.services.ServicoProduto;
 
 @RestController
-@RequestMapping(value = "/pedidoers")
-public class RecursoPedido 
+@RequestMapping(value = "/produtoses")
+public class RecursoProduto
 {
 	 @Autowired
-     private ServicoPedido servicoPedido;
+     private ServicoProduto servicoProduto;
 	 
 	 @GetMapping
-	 public ResponseEntity<List<Pedido>> encontraTodos()
+	 public ResponseEntity<List<Produto>> encontraTodos()
 	 {
-		 List<Pedido> lista = servicoPedido.encontraTodos();
+		 List<Produto> lista = servicoProduto.encontraTodos();
 		 return ResponseEntity.ok().body(lista);
 	 }
 	 
 	 @GetMapping(value = "/{id}")
-	 public ResponseEntity<Pedido> encotraPeloId(@PathVariable Long id)
+	 public ResponseEntity<Produto> encontraPeloId(@PathVariable Long id)
 	 {
-		 Pedido ped = servicoPedido.encontraPeloId(id);
-		 return ResponseEntity.ok().body(ped);
-	 }	 
+		 Produto prod = servicoProduto.encotraPeloId(id);
+		 return ResponseEntity.ok().body(prod);
+	 }
 }
+	 

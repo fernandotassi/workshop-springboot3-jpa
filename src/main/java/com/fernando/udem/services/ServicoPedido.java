@@ -16,12 +16,12 @@ public class ServicoPedido
 	 @Autowired	
      private RepositorioPedido repositorioPedido;
 	 
-	 public List<Pedido> findAll()
+	 public List<Pedido> encontraTodos()
 	 {
 		 return repositorioPedido.findAll();
 	 }
 	 
-	 public Pedido findById(Long id)
+	 public Pedido encontraPeloId(Long id)
 	 {
 		 Optional<Pedido> opt = repositorioPedido.findById(id);
 		 return opt.get();

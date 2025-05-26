@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.fernando.udem.entities.Categoria;
 import com.fernando.udem.entities.Pedido;
+import com.fernando.udem.entities.Produto;
 import com.fernando.udem.entities.Usuario;
 import com.fernando.udem.entities.enums.StatusPedido;
 import com.fernando.udem.repositorios.RepositorioCategoria;
 import com.fernando.udem.repositorios.RepositorioPedido;
+import com.fernando.udem.repositorios.RepositorioProduto;
 import com.fernando.udem.repositorios.RepositorioUsuario;
 
 @Configuration
@@ -26,6 +28,8 @@ public class TesteConfig implements CommandLineRunner
 	  private RepositorioPedido repositorioPedido;
 	  @Autowired
 	  private RepositorioCategoria repositorioCategoria;
+	  @Autowired
+	  private RepositorioProduto repositorioProduto;
 
 	  @Override
 	  public void run(String... args) throws Exception 
@@ -41,8 +45,15 @@ public class TesteConfig implements CommandLineRunner
 		    Categoria cat2 = new Categoria(null, "brinquedo");
 		    Categoria cat3 = new Categoria(null, "informática");
 		    
+		    Produto prod = new Produto(null, "senhor dos aneis", "melhor dos jogos",150., "jogos.com");
+		    Produto prod1 = new Produto(null, "smart tv", "melhor das tvs", 2090., "tvs.com");
+		    Produto prod2 = new Produto(null, "mackbook", "melhor dos notebooks", 4500., "notebooks.com");
+		    Produto prod3 = new Produto(null, "pc", "melhor dos pcs", 3450., "pcs.com");
+		    Produto prod4 = new Produto(null, "rails for dummies", "melhor dos jogos", 100., "jogos.com");
+		    
 		    repositorioUsuario.saveAll(Arrays.asList(u1, u2));
 		    repositorioPedido.saveAll(Arrays.asList(p1, p2, p3));
 		    repositorioCategoria  .saveAll(Arrays.asList(cat1, cat2, cat3));
+		    repositorioProduto.saveAll(Arrays.asList(prod, prod1, prod2, prod3, prod4));
 	  }	 
 }

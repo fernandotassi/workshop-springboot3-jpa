@@ -1,13 +1,15 @@
 package com.fernando.udem.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
-import jakarta.annotation.Generated;
+import java.util.Set;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "categoria")
@@ -20,6 +22,9 @@ public class Categoria implements Serializable
 	private Long id;
 	private String nome;
 	
+	@Transient
+	private Set<Produto> produtos = new HashSet<>();
+	
 	public Categoria(){}
 	public Categoria(Long id, String nome)
 	{this.id = id; this.nome = nome;}
@@ -28,6 +33,7 @@ public class Categoria implements Serializable
 	public void setNome(String nome){this.nome = nome;}
 	public Long getId(){return id;}
 	public String getNome(){return nome;}
+	public Set<Produto> getLista(){return produtos;}
 	
 	@Override
 	public int hashCode() {
