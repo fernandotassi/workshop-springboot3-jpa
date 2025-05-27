@@ -1,0 +1,11 @@
+[33m81840a1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m junção de tabelas em associação muitos para muitos
+[33m6c6a261[m[33m ([m[1;31morigin/main[m[33m)[m Produtogit log --oneline
+[33m560746e[m Categoria
+[33mb7f92be[m enum StatusPedido
+[33m896b091[m Pedido, Instant, ISO 8601 p2
+[33mab8f63b[m Pedido, Instant, ISO 8601 p1
+[33mded1512[m camada de serviço, registro de componente
+[33mb4c8938[m repositório JPA, injeção de dependência, semeando banco de dados
+[33m763cac0[m banco h2, perfil de teste, JPA
+[33m4e64279[m Entidade Usuário e recursos
+[33m8fb50c9[m project created
