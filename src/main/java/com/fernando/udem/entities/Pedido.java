@@ -33,7 +33,6 @@ public class Pedido implements Serializable
 	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
-	 @JsonIgnore
 	private Usuario cliente;
 	
 	@OneToMany(mappedBy = "id.pedido")
@@ -43,7 +42,8 @@ public class Pedido implements Serializable
 	public Pedido(Long id, Instant momento, Usuario cliente, StatusPedido status)
 	{this.id = id; this.momento = momento; this.cliente = cliente; setStatus(status);}
 	
-	public void setMomento(Instant momento){this.momento = momento;}	
+	public void setMomento(Instant momento){this.momento = momento;}
+	public void setCliente(Usuario cliente){this.cliente = cliente;}
 	public void setStatus(StatusPedido status)
 	{
 		if(status != null)
@@ -52,9 +52,10 @@ public class Pedido implements Serializable
 	
 	public Long getId(){return id;}
 	public Instant getMomento(){return momento;}
+	public Usuario getCliente(){return cliente;}
 	public StatusPedido getStatus(){return StatusPedido.valor(status);}
 	public Set<ItemPedido> getItens(){return itens;}
-		
+			
 	@Override
 	public int hashCode() 
 	{

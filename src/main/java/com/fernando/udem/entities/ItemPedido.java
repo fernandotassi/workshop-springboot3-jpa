@@ -32,7 +32,7 @@ public class ItemPedido implements Serializable
      public void setProduto(Produto produto){id.setProduto(produto);}
      
      public Integer getQuantidade(){return quantidade;}
-     public Double getPreco(){return preco;}     
+     public Double getPreco(){return preco;}   
      public Produto getProduto(){return id.getProduto();}
      @JsonIgnore
      public Pedido getPedido(){return id.getPedido();}

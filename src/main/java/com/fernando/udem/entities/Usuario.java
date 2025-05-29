@@ -25,6 +25,7 @@ public class Usuario implements Serializable
      private String fone;
      private String password;
      
+     @JsonIgnore
      @OneToMany(mappedBy = "cliente")
      private List<Pedido> pedidos = new ArrayList<>();
      

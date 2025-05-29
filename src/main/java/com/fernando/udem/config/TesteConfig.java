@@ -57,7 +57,7 @@ public class TesteConfig implements CommandLineRunner
 		    
 		    repositorioUsuario.saveAll(Arrays.asList(u1, u2));
 		    repositorioPedido.saveAll(Arrays.asList(p1, p2, p3));
-		    repositorioCategoria  .saveAll(Arrays.asList(cat1, cat2, cat3));
+		    repositorioCategoria.saveAll(Arrays.asList(cat1, cat2, cat3));
 		    repositorioProduto.saveAll(Arrays.asList(prod, prod1, prod2, prod3, prod4));
 		    
 		    ItemPedido ip1 = new ItemPedido(p1, prod, 2, prod.getPreco());

@@ -14,8 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "produto")
@@ -31,11 +31,14 @@ public class Produto implements Serializable
 	private Double preco;
 	private String imgUrl;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "produto_categoria", joinColumns = @JoinColumn(name = "produto_id"),
 	           inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private Set<Categoria> categorias = new HashSet<>();
+	
+	@OneToMany(mappedBy = "id.produto")
+	private Set<ItemPedido> itens = new HashSet<>();
 	
 	public Produto(){}
 	public Produto(Long id, String nome, String descricao, Double preco, String imgUrl)
@@ -54,6 +57,14 @@ public class Produto implements Serializable
 	public Double getPreco(){return preco;}
 	public String getImgUrl(){return imgUrl;}
 	public Set<Categoria> getCategorias(){return categorias;} 
+	@JsonIgnore
+	public Set<Pedido> getPedido()
+	{
+		Set<Pedido> lista = new HashSet<>();
+		for(ItemPedido ped: itens)		
+			lista.add(ped.getPedido());		
+		return lista;
+	}
 	
 	@Override
 	public int hashCode() 
