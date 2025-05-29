@@ -21,7 +21,7 @@ public class CPItemPedido implements Serializable
 	 @ManyToOne
 	 @JoinColumn(name = "produto_id")
      private Produto produto;
-    
+     
      public void setPedido(Pedido pedido){this.pedido = pedido;}
      public void setProduto(Produto produto){this.produto = produto;}
      public Pedido getPedido(){return pedido;}

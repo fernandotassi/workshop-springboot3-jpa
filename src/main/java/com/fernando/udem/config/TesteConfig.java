@@ -9,11 +9,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.fernando.udem.entities.Categoria;
+import com.fernando.udem.entities.ItemPedido;
 import com.fernando.udem.entities.Pedido;
 import com.fernando.udem.entities.Produto;
 import com.fernando.udem.entities.Usuario;
 import com.fernando.udem.entities.enums.StatusPedido;
 import com.fernando.udem.repositorios.RepositorioCategoria;
+import com.fernando.udem.repositorios.RepositorioItemPedido;
 import com.fernando.udem.repositorios.RepositorioPedido;
 import com.fernando.udem.repositorios.RepositorioProduto;
 import com.fernando.udem.repositorios.RepositorioUsuario;
@@ -30,6 +32,8 @@ public class TesteConfig implements CommandLineRunner
 	  private RepositorioCategoria repositorioCategoria;
 	  @Autowired
 	  private RepositorioProduto repositorioProduto;
+	  @Autowired
+	  private RepositorioItemPedido repositorioItemPedido;
 
 	  @Override
 	  public void run(String... args) throws Exception 
@@ -55,6 +59,13 @@ public class TesteConfig implements CommandLineRunner
 		    repositorioPedido.saveAll(Arrays.asList(p1, p2, p3));
 		    repositorioCategoria  .saveAll(Arrays.asList(cat1, cat2, cat3));
 		    repositorioProduto.saveAll(Arrays.asList(prod, prod1, prod2, prod3, prod4));
+		    
+		    ItemPedido ip1 = new ItemPedido(p1, prod, 2, prod.getPreco());
+		    ItemPedido ip2 = new ItemPedido(p1, prod2, 1, prod2.getPreco());
+		    ItemPedido ip3 = new ItemPedido(p2, prod2, 2, prod2.getPreco());
+		    ItemPedido ip4 = new ItemPedido(p3, prod4, 2, prod4.getPreco()); 
+		    
+		    repositorioItemPedido.saveAll(Arrays.asList(ip1, ip2, ip3, ip4));
 		    
 		    prod.getCategorias().add(cat2);
 		    prod1.getCategorias().add(cat1);
