@@ -61,6 +61,14 @@ public class Pedido implements Serializable
 	public StatusPedido getStatus(){return StatusPedido.valor(status);}
 	public Set<ItemPedido> getItens(){return itens;}
 	public Pagamento getPagamento(){return pagamento;}
+	
+	public Double getTotal()
+	{
+		double soma = 0.;
+		for(ItemPedido ip: itens)
+             soma += ip.getSubTotal();
+		return soma;
+	}
 			
 	@Override
 	public int hashCode() 
