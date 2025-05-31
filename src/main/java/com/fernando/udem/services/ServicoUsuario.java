@@ -10,16 +10,21 @@ import com.fernando.udem.repositorios.RepositorioUsuario;
 public class ServicoUsuario 
 {
 	 @Autowired
-     private RepositorioUsuario repo;
+     private RepositorioUsuario repositorioUsuario;
 	 
 	 public List<Usuario> encontraTodos()
 	 {
-		  return repo.findAll();
+		  return repositorioUsuario.findAll();
 	 }	
 	 
 	 public Usuario encontraPeloId(Long id)
 	 {
-		   Optional<Usuario> op = repo.findById(id);
+		   Optional<Usuario> op = repositorioUsuario.findById(id);
 		   return op.get();
+	 }
+	 
+	 public Usuario adiciona(Usuario us)
+	 {
+		 return repositorioUsuario.save(us);		 
 	 }
 }
