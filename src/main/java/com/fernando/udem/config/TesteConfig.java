@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.fernando.udem.entities.Categoria;
 import com.fernando.udem.entities.ItemPedido;
+import com.fernando.udem.entities.Pagamento;
 import com.fernando.udem.entities.Pedido;
 import com.fernando.udem.entities.Produto;
 import com.fernando.udem.entities.Usuario;
@@ -76,5 +77,8 @@ public class TesteConfig implements CommandLineRunner
 		    prod4.getCategorias().add(cat2);
 		    
 		    repositorioProduto.saveAll(Arrays.asList(prod, prod1, prod2, prod3, prod4));
+		    Pagamento pay1 = new Pagamento(null, Instant.parse("2025-06-21T09:53:07Z"), p1);
+		    p1.setPagamento(pay1);
+		    repositorioPedido.save(p1);
 	  }	 
 }
