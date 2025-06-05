@@ -38,15 +38,12 @@ public class ItemPedido implements Serializable
      public Pedido getPedido(){return id.getPedido();}
      
      public Double getSubTotal()
-     {
-    	 return quantidade * preco;
-     }
+     {return quantidade * preco;}
      
 	 @Override
 	 public int hashCode() 
-	 {
-		return Objects.hash(id);
-	 }
+	 {return Objects.hash(id);}
+	 
 	 @Override
 	 public boolean equals(Object obj) 
 	 {

@@ -44,9 +44,9 @@ public class Pagamento implements Serializable
       public Pedido getPedido(){return pedido;}
       
 	  @Override
-	  public int hashCode() {
-		return Objects.hash(id);
-	  }
+	  public int hashCode() 
+	  {return Objects.hash(id);}
+	  
 	  @Override
 	  public boolean equals(Object obj) {
 	 	if (this == obj)

@@ -2,9 +2,9 @@ package com.fernando.udem.recursos;
 
 import java.net.URI;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.fernando.udem.entities.Usuario;
+import com.fernando.udem.repositorios.RepositorioUsuario;
 import com.fernando.udem.services.ServicoUsuario;
 
 @RestController
@@ -36,7 +36,7 @@ public class RecursoUsuario
 		 Usuario usuario = servicoUsuario.encontraPeloId(id);
 		 return ResponseEntity.ok().body(usuario);
 	 } 
-	 
+	     
 	 @PostMapping
 	 public ResponseEntity<Usuario> adiciona(@RequestBody Usuario obj)
 	 {
@@ -45,4 +45,13 @@ public class RecursoUsuario
 				    .buildAndExpand(us.getId()).toUri();
 		  return ResponseEntity.created(uri).body(us);
 	 }
+	 
+	 @DeleteMapping(value = "/{id}")
+	 public ResponseEntity<Void> delete(@PathVariable Long id)
+	 {
+		  servicoUsuario.delete(id); 
+		  return ResponseEntity.noContent().build();
+	 }
+	 
+	 
 }
