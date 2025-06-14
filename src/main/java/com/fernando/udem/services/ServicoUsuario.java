@@ -1,10 +1,14 @@
 package com.fernando.udem.services;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.fernando.udem.entities.Usuario;
 import com.fernando.udem.repositorios.RepositorioUsuario;
+import com.fernando.udem.services.excesoes.ExcesaoRecursoNaoEncontrado;
 
 @Service
 public class ServicoUsuario 
@@ -20,7 +24,7 @@ public class ServicoUsuario
 	 public Usuario encontraPeloId(Long id)
 	 {
 		   Optional<Usuario> op = repositorioUsuario.findById(id);
-		   return op.get();
+		   return op.orElseThrow(() -> new ExcesaoRecursoNaoEncontrado(id));
 	 }
 	 
 	 public Usuario adiciona(Usuario us)
@@ -39,9 +43,9 @@ public class ServicoUsuario
 	 }
 	 
 	 public void atualizaDados(Usuario u1, Usuario u2)
-	 {		 
-		 u1.setNome(u2.getNome());		 
-		 u1.setEmail(u2.getEmail());		 
-		 u1.setFone(u2.getFone());	
+	 {			 	
+			  u1.setNome(u2.getNome()); 
+			  u1.setEmail(u2.getEmail());
+			  u1.setFone(u2.getFone());			 
 	 }
 }
