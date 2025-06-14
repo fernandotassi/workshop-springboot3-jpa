@@ -1,10 +1,8 @@
-package com.fernando.udem.recursos.excesoes;
+package com.fernando.udem.recursos.excecoes;
 
 import java.io.Serializable;
 import java.time.Instant;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class ErroPadrao implements Serializable
 {	 
      private static final long serialVersionUID = 1L;

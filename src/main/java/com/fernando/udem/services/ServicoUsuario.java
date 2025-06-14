@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.fernando.udem.entities.Usuario;
 import com.fernando.udem.repositorios.RepositorioUsuario;
-import com.fernando.udem.services.excesoes.ExcesaoRecursoNaoEncontrado;
+import com.fernando.udem.services.excecoes.ExcecaoBancoDados;
+import com.fernando.udem.services.excecoes.ExcecaoRecursoNaoEncontrado;
 
 @Service
 public class ServicoUsuario 
@@ -24,7 +27,7 @@ public class ServicoUsuario
 	 public Usuario encontraPeloId(Long id)
 	 {
 		   Optional<Usuario> op = repositorioUsuario.findById(id);
-		   return op.orElseThrow(() -> new ExcesaoRecursoNaoEncontrado(id));
+		   return op.orElseThrow(() -> new ExcecaoRecursoNaoEncontrado(id));
 	 }
 	 
 	 public Usuario adiciona(Usuario us)
@@ -33,7 +36,16 @@ public class ServicoUsuario
 	 }
 	 
 	 public void delete(Long id)
-	 {repositorioUsuario.deleteById(id);}
+	 {
+		 try
+		 {
+		     repositorioUsuario.deleteById(id);
+		 }		 
+		 catch(EmptyResultDataAccessException e)
+		 {throw new ExcecaoRecursoNaoEncontrado(id);}
+		 catch(DataIntegrityViolationException e)
+		 {throw new ExcecaoBancoDados(e.getMessage());}
+	 }
 	 
 	 public Usuario atualiza(Long id, Usuario user)
 	 {
