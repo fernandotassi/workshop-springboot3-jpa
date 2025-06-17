@@ -2,16 +2,15 @@ package com.fernando.udem.services;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-
 import com.fernando.udem.entities.Usuario;
 import com.fernando.udem.repositorios.RepositorioUsuario;
 import com.fernando.udem.services.excecoes.ExcecaoBancoDados;
 import com.fernando.udem.services.excecoes.ExcecaoRecursoNaoEncontrado;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ServicoUsuario 
@@ -49,9 +48,16 @@ public class ServicoUsuario
 	 
 	 public Usuario atualiza(Long id, Usuario user)
 	 {
-		 Usuario usu = repositorioUsuario.getReferenceById(id);
-		 atualizaDados(usu, user);
-		 return repositorioUsuario.save(usu);
+		  
+		 try
+		 {
+			 Usuario usu = repositorioUsuario.getReferenceById(id);
+			 atualizaDados(usu, user);
+			 return repositorioUsuario.save(usu);
+		 }
+		 catch(EntityNotFoundException e)
+		 {throw new ExcecaoRecursoNaoEncontrado(id);}
+		 
 	 }
 	 
 	 public void atualizaDados(Usuario u1, Usuario u2)
