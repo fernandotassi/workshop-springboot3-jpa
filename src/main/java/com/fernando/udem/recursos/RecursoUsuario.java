@@ -19,7 +19,7 @@ import com.fernando.udem.entities.Usuario;
 import com.fernando.udem.services.ServicoUsuario;
 
 @RestController
-@RequestMapping(value = "/usuariosers")
+@RequestMapping(value = "/usuarioses")
 public class RecursoUsuario 
 {
 	 @Autowired
