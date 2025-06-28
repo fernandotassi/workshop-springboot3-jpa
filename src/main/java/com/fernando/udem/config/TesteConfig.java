@@ -39,6 +39,7 @@ public class TesteConfig implements CommandLineRunner
 	  @Override
 	  public void run(String... args) throws Exception 
 	  {
+		    /*
 		    Usuario u1 = new Usuario(null, "maria white", "maria@gmail.com", "981230034", "1243");
 		    Usuario u2 = new Usuario(null, "ana purple", "ana@gmail.com", "983451200", "3421");
 		    
@@ -80,5 +81,6 @@ public class TesteConfig implements CommandLineRunner
 		    Pagamento pay1 = new Pagamento(null, Instant.parse("2025-06-21T09:53:07Z"), p1);
 		    p1.setPagamento(pay1);
 		    repositorioPedido.save(p1);
+		    */
 	  }	 
 }
